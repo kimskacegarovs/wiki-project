@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Wiki - Main page{% endblock %}
+
+{% block content %}
+
+    <h2>
+        Welcome, {{ current_user }}, to the Wiki page
+    </h2>
+
+    <form class="form-inline">
+        <input class="form-control search-bar inline" type="search"
+               placeholder="Search wiki page by the title..." aria-label="Search" name="search_by_title">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <div>
+        {% if pages|length > 0 %}
+            Page list:
+            <ul>
+                {% for page in pages %}
+                    <li><a href="/page-{{ page.slug }}">{{ page.title }}</a> ({{ page.view_counter }} views)</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            Unfortunately, currently no pages available.
+        {% endif %}
+
+    </div>
+
+{% endblock %}

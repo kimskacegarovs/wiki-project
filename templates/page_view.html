@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Wiki - {{ page.title }}{% endblock %}
+
+{% block content %}
+
+        <h3>{{ page.title }}
+
+            {% if authenticated %}
+                <a class="btn btn-info inline" href="page_edit-{{ page.slug }}">
+                    Edit
+                </a>
+            {% endif %}
+
+        </h3>
+
+        <div>
+            {{ page_content_parsed|safe }}
+        </div>
+
+        <div class="view-counter">
+            Viewed {{ page.view_counter }} times
+        </div>
+
+{% endblock %}
